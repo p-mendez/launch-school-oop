@@ -47,8 +47,16 @@ class GoodDog
     @name = name
   end
 
+  def get_name
+    @name
+  end
+
+  def set_name=(name)
+    @name = name
+  end
+
   def speak
-    "Arf!"
+    "#{@name} says Arf!"
   end
 end
 
@@ -57,3 +65,20 @@ puts sparky.speak
 
 fido = GoodDog.new("Fido")
 puts fido.speak
+
+#puts sparky.name # <- Error
+
+puts sparky.get_name
+sparky.set_name = "Spartacus"
+puts sparky.get_name
+
+=begin
+As you can see, we've successfully changed sparky's name to the string "Spartacus".
+The first thing you should notice about the setter method set_name= is that Ruby gives
+us a special syntax to use it. To use the set_name= method normally, we would expect to
+do this: sparky.set_name=("Spartacus"), where the entire "set_name=" is the method name,
+and the string "Spartacus" is the argument being passed in to the method. Ruby recognizes
+that this is a setter method and allows us to use the more natural assignment syntax:
+sparky.set_name = "Spartacus". When you see this code, just realize there's a method called
+set_name= working behind the scenes, and we're just seeing some Ruby syntactical sugar.
+=end

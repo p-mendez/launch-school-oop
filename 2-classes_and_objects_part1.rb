@@ -114,35 +114,74 @@ We'll make the change to our code as well:
 # puts sparky.name
 
 
-class GoodDog
-  attr_accessor :name
+# class GoodDog
+#   attr_accessor :name
 
-  def initialize(name)
-    @name = name
+#   def initialize(name)
+#     @name = name
+#   end
+
+#   def speak
+#     "#{@name} says arf!"
+#   end
+# end
+
+# sparky = GoodDog.new("Sparky")
+# puts sparky.speak
+# puts sparky.name
+# sparky.name = "Spartacus"
+# puts sparky.name
+
+
+# =begin
+# The attr_accessor method takes a symbol as an argument, which it uses to create the method
+# name for the getter and setter methods. That one line replaced two method definitions.
+
+
+# But what if we only want the getter method without the setter method?
+# Then we would want to use the attr_reader method. It works the same way but only allows you
+# to retrieve the instance variable. And if you only want the setter method, you can use the
+# attr_writer method. All of the attr_* methods take Symbol objects as arguments;
+
+# if there are more states you're tracking, you can use this syntax:
+#   attr_accessor :name, :height, :weight
+# =end
+
+class GoodDog
+  attr_accessor :name, :height, :weight
+
+  def initialize(n)
+    @name = n
   end
 
   def speak
-    "#{@name} says arf!"
+    "#{name} says Arf!"
+  end
+
+  def info
+    "#{name} has height: #{height} and weight: #{weight}"
+  end
+
+  def change_info(n, h, w)
+    self.name = n
+    self.height = h
+    self.weight = w
   end
 end
 
 sparky = GoodDog.new("Sparky")
+puts sparky.name
 puts sparky.speak
-puts sparky.name
-sparky.name = "Spartacus"
-puts sparky.name
+sparky.change_info("Spartacus", "24 inches", "50 pounds")
+puts sparky.info
 
 
 =begin
-The attr_accessor method takes a symbol as an argument, which it uses to create the method
-name for the getter and setter methods. That one line replaced two method definitions.
+The reason our setter methods didn't work is because Ruby thought we were initializing local variables.
+Recall that to initialize or create new local variables, all we have to do is x = 1 or str = "hello world".
+  It turns out that instead of calling the name=, height= and weight= setter methods, what we did was create
+  three new local variables called name, height and weight. That's definitely not what we wanted to do.
 
-
-But what if we only want the getter method without the setter method?
-Then we would want to use the attr_reader method. It works the same way but only allows you
-to retrieve the instance variable. And if you only want the setter method, you can use the
-attr_writer method. All of the attr_* methods take Symbol objects as arguments;
-
-if there are more states you're tracking, you can use this syntax:
-  attr_accessor :name, :height, :weight
+To disambiguate from creating a local variable, we need to use self.name= to let Ruby know that we're
+calling a method.
 =end

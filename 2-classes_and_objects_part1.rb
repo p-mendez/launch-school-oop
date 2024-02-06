@@ -147,41 +147,90 @@ We'll make the change to our code as well:
 #   attr_accessor :name, :height, :weight
 # =end
 
-class GoodDog
-  attr_accessor :name, :height, :weight
+# class GoodDog
+#   attr_accessor :name, :height, :weight
 
-  def initialize(n)
-    @name = n
-  end
+#   def initialize(n)
+#     @name = n
+#   end
 
-  def speak
-    "#{name} says Arf!"
-  end
+#   def speak
+#     "#{name} says Arf!"
+#   end
 
-  def info
-    "#{name} has height: #{height} and weight: #{weight}"
-  end
+#   def info
+#     "#{name} has height: #{height} and weight: #{weight}"
+#   end
 
-  def change_info(n, h, w)
-    self.name = n
-    self.height = h
-    self.weight = w
-  end
-end
+#   def change_info(n, h, w)
+#     self.name = n
+#     self.height = h
+#     self.weight = w
+#   end
+# end
 
-sparky = GoodDog.new("Sparky")
-puts sparky.name
-puts sparky.speak
-sparky.change_info("Spartacus", "24 inches", "50 pounds")
-puts sparky.info
+# sparky = GoodDog.new("Sparky")
+# puts sparky.name
+# puts sparky.speak
+# sparky.change_info("Spartacus", "24 inches", "50 pounds")
+# puts sparky.info
+
+
+# =begin
+# The reason our setter methods didn't work is because Ruby thought we were initializing local variables.
+# Recall that to initialize or create new local variables, all we have to do is x = 1 or str = "hello world".
+#   It turns out that instead of calling the name=, height= and weight= setter methods, what we did was create
+#   three new local variables called name, height and weight. That's definitely not what we wanted to do.
+
+# To disambiguate from creating a local variable, we need to use self.name= to let Ruby know that we're
+# calling a method.
+# =end
+
+
+
+
 
 
 =begin
-The reason our setter methods didn't work is because Ruby thought we were initializing local variables.
-Recall that to initialize or create new local variables, all we have to do is x = 1 or str = "hello world".
-  It turns out that instead of calling the name=, height= and weight= setter methods, what we did was create
-  three new local variables called name, height and weight. That's definitely not what we wanted to do.
-
-To disambiguate from creating a local variable, we need to use self.name= to let Ruby know that we're
-calling a method.
+EXERCISE 1
+Create a class called MyCar. When you initialize a new instance or object of the class,
+allow the user to define some instance variables that tell us the year, color, and model
+of the car. Create an instance variable that is set to 0 during instantiation of the object
+to track the current speed of the car as well. Create instance methods that allow the car to
+speed up, brake, and shut the car off.
 =end
+class MyCar
+  attr_accessor :year, :color, :model, :current_speed
+
+  def initialize(y, c, m)
+    @year = y
+    @color = c
+    @model = m
+    @current_speed = 0
+  end
+
+  def info
+    "Year: #{year}\nColor: #{color}\nModel: #{model}\nCurrent Speed: #{current_speed}"
+  end
+
+  def speed_up(addition = 1)
+    self.current_speed += addition
+    puts "You are now traveling at #{current_speed} mph."
+  end
+
+  def brake (decrease = 1)
+    self.current_speed -= decrease
+    puts "You have decreased your speed to #{current_speed} mph."
+  end
+
+  def shut_off
+    self.current_speed = 0
+    puts "You have turned off your car. Your speed is now #{current_speed} mph."
+  end
+end
+
+car = MyCar.new(1998, "red", "Outlander")
+puts car.info
+car.speed_up 10
+car.brake 8
+car.shut_off

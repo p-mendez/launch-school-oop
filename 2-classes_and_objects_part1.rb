@@ -199,8 +199,51 @@ of the car. Create an instance variable that is set to 0 during instantiation of
 to track the current speed of the car as well. Create instance methods that allow the car to
 speed up, brake, and shut the car off.
 =end
+# class MyCar
+#   attr_accessor :year, :color, :model, :current_speed
+
+#   def initialize(y, c, m)
+#     @year = y
+#     @color = c
+#     @model = m
+#     @current_speed = 0
+#   end
+
+#   def info
+#     "Year: #{year}\nColor: #{color}\nModel: #{model}\nCurrent Speed: #{current_speed}"
+#   end
+
+#   def speed_up(addition = 1)
+#     self.current_speed += addition
+#     puts "You are now traveling at #{current_speed} mph."
+#   end
+
+#   def brake (decrease = 1)
+#     self.current_speed -= decrease
+#     puts "You have decreased your speed to #{current_speed} mph."
+#   end
+
+#   def shut_off
+#     self.current_speed = 0
+#     puts "You have turned off your car. Your speed is now #{current_speed} mph."
+#   end
+# end
+
+# car = MyCar.new(1998, "red", "Outlander")
+# puts car.info
+# car.speed_up 10
+# car.brake 8
+# car.shut_off
+
+=begin
+EXERCISE 2
+Add an accessor method to your MyCar class to change and view the color of your car.
+Then add an accessor method that allows you to view, but not modify, the year of your car.
+=end
+
 class MyCar
-  attr_accessor :year, :color, :model, :current_speed
+  attr_accessor :current_speed, :color
+  attr_reader :year
 
   def initialize(y, c, m)
     @year = y
@@ -209,28 +252,27 @@ class MyCar
     @current_speed = 0
   end
 
-  def info
-    "Year: #{year}\nColor: #{color}\nModel: #{model}\nCurrent Speed: #{current_speed}"
+  def speed_up(add = 1)
+    self.current_speed += add
+    puts "Current speed is now #{current_speed}"
   end
 
-  def speed_up(addition = 1)
-    self.current_speed += addition
-    puts "You are now traveling at #{current_speed} mph."
-  end
-
-  def brake (decrease = 1)
+  def brake(decrease = 1)
     self.current_speed -= decrease
-    puts "You have decreased your speed to #{current_speed} mph."
+    puts "Current speed is not #{current_speed}"
   end
 
   def shut_off
     self.current_speed = 0
-    puts "You have turned off your car. Your speed is now #{current_speed} mph."
+    puts "Car is off. Current speed is #{current_speed}"
   end
 end
 
-car = MyCar.new(1998, "red", "Outlander")
-puts car.info
-car.speed_up 10
-car.brake 8
+
+car = MyCar.new(2000, "red", "civic")
+car.speed_up 30
+car.brake
 car.shut_off
+car.color = "yellow"
+puts car.color
+puts car.year

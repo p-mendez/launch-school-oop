@@ -241,6 +241,50 @@ Add an accessor method to your MyCar class to change and view the color of your 
 Then add an accessor method that allows you to view, but not modify, the year of your car.
 =end
 
+# class MyCar
+#   attr_accessor :current_speed, :color
+#   attr_reader :year
+
+#   def initialize(y, c, m)
+#     @year = y
+#     @color = c
+#     @model = m
+#     @current_speed = 0
+#   end
+
+#   def speed_up(add = 1)
+#     self.current_speed += add
+#     puts "Current speed is now #{current_speed}"
+#   end
+
+#   def brake(decrease = 1)
+#     self.current_speed -= decrease
+#     puts "Current speed is not #{current_speed}"
+#   end
+
+#   def shut_off
+#     self.current_speed = 0
+#     puts "Car is off. Current speed is #{current_speed}"
+#   end
+# end
+
+
+# car = MyCar.new(2000, "red", "civic")
+# car.speed_up 30
+# car.brake
+# car.shut_off
+# car.color = "yellow"
+# puts car.color
+# puts car.year
+
+
+=begin
+EXERCISE 3
+You want to create a nice interface that allows you to accurately describe the action
+you want your program to perform. Create a method called spray_paint that can be called
+on an object and will modify the color of the car.
+=end
+
 class MyCar
   attr_accessor :current_speed, :color
   attr_reader :year
@@ -266,13 +310,12 @@ class MyCar
     self.current_speed = 0
     puts "Car is off. Current speed is #{current_speed}"
   end
+
+  def spray_paint(color)
+    self.color = color
+    puts "Your car is now #{color}!"
+  end
 end
 
-
-car = MyCar.new(2000, "red", "civic")
-car.speed_up 30
-car.brake
-car.shut_off
-car.color = "yellow"
-puts car.color
-puts car.year
+oldCar = MyCar.new(1990, "yellow", "beetle")
+oldCar.spray_paint("pink")

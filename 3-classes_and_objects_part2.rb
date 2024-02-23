@@ -145,52 +145,87 @@ p sparky
 # end
 
 
+# =begin
+# EXERCISE 2
+# Override the to_s method to create a user friendly print out of your object.
+# =end
+
+
+# class MyCar
+#   attr_accessor :current_speed, :color
+#   attr_reader :year, :model
+
+#   def initialize(y, c, m)
+#     @year = y
+#     @color = c
+#     @model = m
+#     @current_speed = 0
+#   end
+
+#   def self.get_gas_mileage(miles, gallons)
+#     gas_mileage = miles / gallons
+#     puts "Your gas mileage is #{gas_mileage}"
+#     gas_mileage
+#   end
+#   def speed_up(add = 1)
+#     self.current_speed += add
+#     puts "Current speed is now #{current_speed}"
+#   end
+
+#   def brake(decrease = 1)
+#     self.current_speed -= decrease
+#     puts "Current speed is not #{current_speed}"
+#   end
+
+#   def shut_off
+#     self.current_speed = 0
+#     puts "Car is off. Current speed is #{current_speed}"
+#   end
+
+#   def spray_paint(color)
+#     self.color = color
+#     puts "Your car is now #{color}!"
+#   end
+
+#   def to_s
+#     "My car is a #{self.color} #{self.year} #{self.model}."
+#   end
+# end
+
+# car = MyCar.new(2000, "red", "Miata")
+# puts car
+
 =begin
-EXERCISE 2
-Override the to_s method to create a user friendly print out of your object.
-=end
+When running the following code...
 
-
-class MyCar
-  attr_accessor :current_speed, :color
-  attr_reader :year, :model
-
-  def initialize(y, c, m)
-    @year = y
-    @color = c
-    @model = m
-    @current_speed = 0
-  end
-
-  def self.get_gas_mileage(miles, gallons)
-    gas_mileage = miles / gallons
-    puts "Your gas mileage is #{gas_mileage}"
-    gas_mileage
-  end
-  def speed_up(add = 1)
-    self.current_speed += add
-    puts "Current speed is now #{current_speed}"
-  end
-
-  def brake(decrease = 1)
-    self.current_speed -= decrease
-    puts "Current speed is not #{current_speed}"
-  end
-
-  def shut_off
-    self.current_speed = 0
-    puts "Car is off. Current speed is #{current_speed}"
-  end
-
-  def spray_paint(color)
-    self.color = color
-    puts "Your car is now #{color}!"
-  end
-
-  def to_s
-    "My car is a #{self.color} #{self.year} #{self.model}."
+Copy Code
+class Person
+  attr_reader :name
+  def initialize(name)
+    @name = name
   end
 end
 
-car = MyCar.new(2000, "red", "Miata")
-puts car
+bob = Person.new("Steve")
+bob.name = "Bob"
+We get the following error...
+
+Copy Code
+test.rb:9:in `<main>': undefined method `name=' for
+  #<Person:0x007fef41838a28 @name="Steve"> (NoMethodError)
+Why do we get this error and how do we fix it?
+=end
+
+# ANSWER: You get the error because the name= method is a mutator and
+#         currently, the code only allows the name attrite to be accessed, not mutated.
+#         This can be fixed like this:
+
+class Person
+  attr_accessor :name
+  def initialize(name)
+    @name = name
+  end
+end
+
+bob = Person.new("Steve")
+bob.name = "Bob"

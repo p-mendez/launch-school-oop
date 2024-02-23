@@ -97,3 +97,49 @@ p sparky
 # to_s is what gets called for string interpolation.
 # If you don't override to_s then it uses the inherited to_s (Usually Object#to_s)
 # Make sure to_s always returns a string
+
+
+=begin
+  EXCERCISE 1
+  Add a class method to your MyCar class that calculates the gas mileage (i.e. miles per gallon) of any car.
+
+
+=end
+
+
+class MyCar
+  attr_accessor :current_speed, :color
+  attr_reader :year
+
+  def initialize(y, c, m)
+    @year = y
+    @color = c
+    @model = m
+    @current_speed = 0
+  end
+
+  def self.get_gas_mileage(miles, gallons)
+    gas_mileage = miles / gallons
+    puts "Your gas mileage is #{gas_mileage}"
+    gas_mileage
+  end
+  def speed_up(add = 1)
+    self.current_speed += add
+    puts "Current speed is now #{current_speed}"
+  end
+
+  def brake(decrease = 1)
+    self.current_speed -= decrease
+    puts "Current speed is not #{current_speed}"
+  end
+
+  def shut_off
+    self.current_speed = 0
+    puts "Car is off. Current speed is #{current_speed}"
+  end
+
+  def spray_paint(color)
+    self.color = color
+    puts "Your car is now #{color}!"
+  end
+end

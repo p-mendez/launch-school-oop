@@ -105,3 +105,77 @@ of the calling method will be used.
 
 # sparky = BadDog.new("sparky")
 # p sparky
+
+
+=begin
+Create a superclass called Vehicle for your MyCar class to inherit from and
+move the behavior that isn't specific to the MyCar class to the superclass.
+Create a constant in your MyCar class that stores information about the vehicle
+that makes it different from other types of Vehicles.
+
+Then create a new class called MyTruck that inherits from your superclass
+that also has a constant defined that separates it from the MyCar class in
+some way.
+=end
+
+class Vehicle
+  attr_accessor :current_speed, :color
+  attr_reader :year
+
+  def initialize(y, c, m)
+    @year = y
+    @color = c
+    @model = m
+    @current_speed = 0
+  end
+
+  def self.get_gas_mileage(miles, gallons)
+    gas_mileage = miles / gallons
+    puts "Your gas mileage is #{gas_mileage}"
+    gas_mileage
+  end
+
+  def speed_up(add = 1)
+    self.current_speed += add
+    puts "Current speed is now #{current_speed}"
+  end
+
+  def brake(decrease = 1)
+    self.current_speed -= decrease
+    puts "Current speed is not #{current_speed}"
+  end
+
+  def shut_off
+    self.current_speed = 0
+    puts "Car is off. Current speed is #{current_speed}"
+  end
+
+  def spray_paint(color)
+    self.color = color
+    puts "Your car is now #{color}!"
+  end
+end
+
+class MyCar < Vehicle
+  attr_reader :NUMBER_OF_DOORS
+
+  def initialize(y, c, m)
+    super(y, c, m)
+    @NUMBER_OF_DOORS = 4
+  end
+end
+
+class MyTruck < Vehicle
+  attr_reader :NUMBER_OF_DOORS
+
+  def initialize(y, c, m)
+    super(y, c, m)
+    @NUMBER_OF_DOORS = 2
+  end
+end
+
+car = MyCar.new(2000, "red", "outlander")
+truck = MyTruck.new(1900, "white", "ram")
+
+puts car.NUMBER_OF_DOORS
+puts truck.NUMBER_OF_DOORS

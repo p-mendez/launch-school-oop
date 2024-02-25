@@ -108,6 +108,7 @@ of the calling method will be used.
 
 
 =begin
+EXERCISE 1
 Create a superclass called Vehicle for your MyCar class to inherit from and
 move the behavior that isn't specific to the MyCar class to the superclass.
 Create a constant in your MyCar class that stores information about the vehicle
@@ -116,17 +117,29 @@ that makes it different from other types of Vehicles.
 Then create a new class called MyTruck that inherits from your superclass
 that also has a constant defined that separates it from the MyCar class in
 some way.
+
+EXERCISE 2
+Add a class variable to your superclass that can keep track of the number of
+objects created that inherit from the superclass. Create a method to print
+out the value of this class variable as well.
 =end
 
 class Vehicle
   attr_accessor :current_speed, :color
   attr_reader :year
 
+  @@number_of_vehicles = 0
+
   def initialize(y, c, m)
     @year = y
     @color = c
     @model = m
     @current_speed = 0
+    @@number_of_vehicles += 1
+  end
+
+  def self.number_of_vehicles
+    @@number_of_vehicles
   end
 
   def self.get_gas_mileage(miles, gallons)
@@ -176,6 +189,10 @@ end
 
 car = MyCar.new(2000, "red", "outlander")
 truck = MyTruck.new(1900, "white", "ram")
+truck2 = MyTruck.new(1900, "white", "ram")
 
-puts car.NUMBER_OF_DOORS
-puts truck.NUMBER_OF_DOORS
+
+
+puts "car doors: " + String(car.NUMBER_OF_DOORS)
+puts "truck doors: " + String(truck.NUMBER_OF_DOORS)
+puts "number of vehicles: " + String(Vehicle.number_of_vehicles)

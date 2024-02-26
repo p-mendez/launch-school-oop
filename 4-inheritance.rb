@@ -122,13 +122,26 @@ EXERCISE 2
 Add a class variable to your superclass that can keep track of the number of
 objects created that inherit from the superclass. Create a method to print
 out the value of this class variable as well.
+
+EXERCISE 3
+Create a module that you can mix in to ONE of your subclasses that describes a
+behavior unique to that subclass.
+
 =end
+module Raceable
+  def race
+    puts "3...2...1... Go!"
+    self.speed_up 100
+  end
+end
 
 class Vehicle
   attr_accessor :current_speed, :color
-  attr_reader :year
+  attr_reader :year, :model
 
   @@number_of_vehicles = 0
+
+  include Raceable
 
   def initialize(y, c, m)
     @year = y
@@ -196,3 +209,5 @@ truck2 = MyTruck.new(1900, "white", "ram")
 puts "car doors: " + String(car.NUMBER_OF_DOORS)
 puts "truck doors: " + String(truck.NUMBER_OF_DOORS)
 puts "number of vehicles: " + String(Vehicle.number_of_vehicles)
+
+car.race

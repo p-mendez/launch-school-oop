@@ -129,6 +129,11 @@ behavior unique to that subclass.
 
 EXERCISE 4
 Print to the screen your method lookup for the classes that you have created.
+
+EXERCISE 5
+Move all of the methods from the MyCar class that also pertain to the MyTruck
+class into the Vehicle class. Make sure that all of your previous method calls
+are working when you are finished.
 =end
 module Raceable
   def race

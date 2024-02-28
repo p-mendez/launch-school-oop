@@ -127,6 +127,8 @@ EXERCISE 3
 Create a module that you can mix in to ONE of your subclasses that describes a
 behavior unique to that subclass.
 
+EXERCISE 4
+Print to the screen your method lookup for the classes that you have created.
 =end
 module Raceable
   def race
@@ -211,3 +213,10 @@ puts "truck doors: " + String(truck.NUMBER_OF_DOORS)
 puts "number of vehicles: " + String(Vehicle.number_of_vehicles)
 
 car.race
+
+puts "=========VEHICLE METHOD LOOK UP========="
+puts Vehicle.ancestors
+puts "=========MYCAR METHOD LOOK UP========="
+puts MyCar.ancestors
+puts "=========MYTRUCK METHOD LOOK UP========="
+puts MyTruck.ancestors

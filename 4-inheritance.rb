@@ -134,6 +134,11 @@ EXERCISE 5
 Move all of the methods from the MyCar class that also pertain to the MyTruck
 class into the Vehicle class. Make sure that all of your previous method calls
 are working when you are finished.
+
+EXERCISE 6
+Write a method called age that calls a private method to calculate the age of
+the vehicle. Make sure the private method is not available from outside of the
+class. You'll need to use Ruby's built-in Time class to help.
 =end
 module Raceable
   def race
@@ -187,6 +192,18 @@ class Vehicle
     self.color = color
     puts "Your car is now #{color}!"
   end
+
+  def age
+    "Your #{self.model} is #{years_old} years old."
+  end
+
+  private
+
+  def years_old
+    Time.now.year - self.year
+  end
+
+
 end
 
 class MyCar < Vehicle
@@ -225,3 +242,5 @@ puts "=========MYCAR METHOD LOOK UP========="
 puts MyCar.ancestors
 puts "=========MYTRUCK METHOD LOOK UP========="
 puts MyTruck.ancestors
+
+puts car.age

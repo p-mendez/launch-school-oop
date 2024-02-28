@@ -250,6 +250,23 @@ puts car.age
 EXERCISE 7
 Create a class 'Student' with attributes name and grade. Do NOT make the grade getter public,
 so joe.grade will raise an error. Create a better_grade_than? method, that you can call like so...
+
+EXERCISE 8
+Given the following code...
+
+Copy Code
+bob = Person.new
+bob.hi
+And the corresponding error message...
+
+Copy Code
+NoMethodError: private method `hi' called for #<Person:0x007ff61dbb79f0>
+from (irb):8
+from /usr/local/rvm/rubies/ruby-2.0.0-rc2/bin/irb:16:in `<main>'
+What is the problem and how would you go about fixing it?
+
+Answer: Don't make hi method private. Put it above the private line in the code.
+
 =end
 
 class Student

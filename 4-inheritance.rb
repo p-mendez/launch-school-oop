@@ -244,3 +244,32 @@ puts "=========MYTRUCK METHOD LOOK UP========="
 puts MyTruck.ancestors
 
 puts car.age
+
+
+=begin
+EXERCISE 7
+Create a class 'Student' with attributes name and grade. Do NOT make the grade getter public,
+so joe.grade will raise an error. Create a better_grade_than? method, that you can call like so...
+=end
+
+class Student
+  def initialize(n, g)
+    self.name = n
+    self.grade = g
+  end
+
+  def better_grade_than? (other)
+    self.grade > other.grade
+  end
+
+  protected
+
+  attr_accessor :name, :grade
+end
+
+
+joe = Student.new("Joe", 95)
+bob = Student.new("Bob", 67)
+
+
+puts "Well done!" if joe.better_grade_than?(bob)

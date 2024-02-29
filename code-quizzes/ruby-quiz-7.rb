@@ -79,18 +79,18 @@ end
 # puts player.batting_average
 # puts player.on_base_percentage
 
-class Person
-  def initialize(f, l)
-    @first_name = f
-    @last_name = l
-  end
+# class Person
+#   def initialize(f, l)
+#     @first_name = f
+#     @last_name = l
+#   end
 
-  attr_reader :first_name, :last_name
+#   attr_reader :first_name, :last_name
 
-  def full_name
-    "#{first_name} #{last_name}"
-  end
-end
+#   def full_name
+#     "#{first_name} #{last_name}"
+#   end
+# end
 
 # jd = Person.new("John", "Doe")
 # puts jd.full_name

@@ -19,4 +19,26 @@ class Board
   end
 end
 
+class Player
+  attr_accessor :symbol, :name
+
+  def initialize(n, s)
+    self.name = n
+    self.symbol = s
+  end
+
+  def self.create_player_one
+    Player.new('Player 1', :o)
+  end
+
+  def self.create_player_two
+    Player.new("Player 2", :x)
+  end
+end
+
 b = Board.new
+p1 = Player.create_player_one
+p2 = Player.create_player_two
+p b
+p p1
+p p2

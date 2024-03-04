@@ -36,6 +36,16 @@ class Player
   end
 end
 
+class Game
+
+  def initialize
+    @p1 = Player.create_player_one
+    @p2 = Player.create_player_two
+    @board = Board.new
+  end
+
+end
+
 b = Board.new
 p1 = Player.create_player_one
 p2 = Player.create_player_two

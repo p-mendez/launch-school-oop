@@ -18,13 +18,8 @@ class Board
     board[position].nil?
   end
 
-  def play(position, symbol)
-    if can_play? position
-      board[position] = symbol
-    else
-      puts 'Board position occupied.'
-      false
-    end
+  def positions_available?
+    board.value? nil
   end
 end
 
@@ -46,6 +41,7 @@ class Player
 end
 
 class Game
+  attr_reader :p1, :p2, :board
 
   def initialize
     @p1 = Player.create_player_one
@@ -58,6 +54,6 @@ end
 b = Board.new
 p1 = Player.create_player_one
 p2 = Player.create_player_two
-p b
+puts b.positions_available?
 p p1
 p p2

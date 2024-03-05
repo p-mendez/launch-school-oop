@@ -67,11 +67,7 @@ class Game
   end
 
   def play_round
-    if p1_turn
-      current_player = p1
-    else
-      current_player = p2
-    end
+    current_player = get_current_player
     player_prompt
     next_move = gets.chomp
     board.play(next_move, current_player.symbol)
@@ -83,6 +79,12 @@ class Game
     print "Input your next move: "
   end
 
+  def get_current_player
+    if p1_turn
+      return p1
+    else
+      return p2
+    end
 end
 
 # b = Board.new

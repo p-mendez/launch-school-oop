@@ -10,7 +10,7 @@ class Board
     positions = %i[top_l top_c top_r
                    mid_l mid_c mid_r
                    bottom_l bottom_c bottom_r]
-    positions.each {|key| board[key] = nil }
+    positions.each { |key| board[key] = nil }
     board
   end
 
@@ -23,17 +23,21 @@ class Board
   end
 
   def available_positions
-    p = board.select { |k, v| v.nil? }
+    p = board.select { |_k, v| v.nil? }
     p.keys.join(', ')   # comma separate the results
+  end
+
+  def play(position, symbol)
+    board[position] = symbol
   end
 end
 
 class Player
-  attr_accessor :symbol, :name
+  attr_reader :symbol, :name
 
   def initialize(n, s)
-    self.name = n
-    self.symbol = s
+    @name = n
+    @symbol = s
   end
 
   def self.create_player_one
@@ -46,13 +50,14 @@ class Player
 end
 
 class Game
-  attr_reader :p1, :p2, :board, :current_player
+  attr_reader :p1, :p2, :board, :p1_turn
+  attr_accessor :current_player
 
   def initialize
     @p1 = Player.create_player_one
     @p2 = Player.create_player_two
     @board = Board.new
-    @current_player = self.p1
+    @p1_turn = true
   end
 
   def start
@@ -62,14 +67,20 @@ class Game
   end
 
   def play_round
+    if p1_turn
+      current_player = p1
+    else
+      current_player = p2
+    end
     player_prompt
+    next_move = gets.chomp
+    board.play(next_move, current_player.symbol)
   end
 
   def player_prompt
     puts current_player
     puts "Available positions: #{board.available_positions}"
     print "Input your next move: "
-    next_move = gets.chomp
   end
 
 end

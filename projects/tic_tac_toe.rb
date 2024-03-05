@@ -66,7 +66,7 @@ class Game
   def play_round
     player = current_player
     player_prompt
-    next_move = gets.chomp
+    next_move = gets.chomp.to_sym
     board.play(next_move, player.symbol)
   end
 

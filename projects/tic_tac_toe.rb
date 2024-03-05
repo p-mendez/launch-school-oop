@@ -2,7 +2,16 @@ class Board
   attr_accessor :board
 
   def initialize
-    self.board = Array.new(9)
+    self.board = create_board
+  end
+
+  def create_board
+    board = {}
+    positions = %i[top_l top_c top_r
+                   mid_l mid_c mid_r
+                   bottom_l bottom_c bottom_r]
+    positions.each {|key| board[key] = nil }
+    board
   end
 
   def can_play?(position)

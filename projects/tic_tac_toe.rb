@@ -51,7 +51,6 @@ end
 
 class Game
   attr_reader :p1, :p2, :board, :p1_turn
-  attr_accessor :current_player
 
   def initialize
     @p1 = Player.create_player_one
@@ -61,30 +60,29 @@ class Game
   end
 
   def start
-    while board.positions_available?
-      play_round
-    end
+    play_round while board.positions_available?
   end
 
   def play_round
-    current_player = get_current_player
+    player = current_player
     player_prompt
     next_move = gets.chomp
-    board.play(next_move, current_player.symbol)
+    board.play(next_move, player.symbol)
   end
 
   def player_prompt
     puts current_player
     puts "Available positions: #{board.available_positions}"
-    print "Input your next move: "
+    print 'Input your next move: '
   end
 
-  def get_current_player
+  def current_player
     if p1_turn
-      return p1
+      p1
     else
-      return p2
+      p2
     end
+  end
 end
 
 # b = Board.new

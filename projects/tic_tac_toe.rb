@@ -68,6 +68,7 @@ class Game
     player_prompt
     next_move = gets.chomp.to_sym
     board.play(next_move, player.symbol)
+    switch_player
   end
 
   def player_prompt
@@ -82,6 +83,10 @@ class Game
     else
       p2
     end
+  end
+
+  def switch_player
+  self.p1_turn =   !p1_turn
   end
 end
 

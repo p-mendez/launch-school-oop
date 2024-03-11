@@ -5,6 +5,12 @@ class Board
     self.board = create_board
   end
 
+  def self.return_winner(pos1, pos2, pos3)
+    winner = nil
+    winner = pos1 if pos1 == pos2 && pos2 == pos3
+    winner
+  end
+
   def create_board
     board = {}
     positions = %i[top_l top_c top_r
@@ -55,13 +61,14 @@ end
 
 class Game
   attr_reader :p1, :p2, :board
-  attr_accessor :p1_turn
+  attr_accessor :p1_turn, :winner
 
   def initialize
     @p1 = Player.create_player_one
     @p2 = Player.create_player_two
     @board = Board.new
     @p1_turn = true
+    @winner = nil
   end
 
   def start
